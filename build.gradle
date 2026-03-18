@@ -1,0 +1,17 @@
+plugins {
+    id 'java-library'
+} // Язык программирования, который мы будем использовать
+
+repositories {
+    mavenCentral()
+} // откуда будем забирать внешние библиотеки
+
+dependencies { //Библиотеки для тестов (Selenide + JUnit 5)
+    testImplementation (
+            "com.codeborne:selenide:7.15.0",
+            "org.junit.jupiter:junit-jupiter:5.9.3")
+}
+
+test {
+    useJUnitPlatform()
+}
