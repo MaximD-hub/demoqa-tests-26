@@ -6,12 +6,12 @@ repositories {
     mavenCentral()
 } // откуда будем забирать внешние библиотеки
 
-dependencies { //Библиотеки для тестов (Selenide + JUnit 5)
+dependencies {
     testImplementation (
             "com.codeborne:selenide:7.15.0",
-            "org.junit.jupiter:junit-jupiter:5.9.3")
-}
+            "org.junit.jupiter:junit-jupiter:5.10.0")
+} //Библиотеки для тестов (Selenide + JUnit 5)
 
 test {
     useJUnitPlatform()
-}
+} // запускай тесты через платформу JUnit 5
