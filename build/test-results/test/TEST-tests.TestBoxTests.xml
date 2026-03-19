@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="tests.TestBoxTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-03-18T17:59:02.108Z" hostname="MacBook-Pro-kaspi-90.local" time="11.281">
+  <properties/>
+  <testcase name="fillFormTest()" classname="tests.TestBoxTests" time="11.281"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[[Test worker] INFO com.codeborne.selenide.WebDriverThreadLocalContainer - No webdriver is bound to current thread: 1 - let's create a new webdriver
+мар. 18, 2026 10:59:10 PM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+WARNING: Unable to find an exact match for CDP version 146, returning the closest version; found: 145; Please update to a Selenium version that supports CDP version 146
+[Test worker] INFO com.codeborne.selenide.webdriver.WebDriverFactory - Selenide 7.15.0 / Selenium 4.41.0 / chrome 146.0.7680.80 mac
+[Test worker] INFO com.codeborne.selenide.WebDriverThreadLocalContainer - Browser will stay open due to holdBrowserOpen=true: 1 -> ChromeDriver: chrome on mac (cb4b6799b0b785a88d74aa75da35a56c)
+]]></system-err>
+</testsuite>
