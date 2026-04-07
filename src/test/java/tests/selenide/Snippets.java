@@ -1,13 +1,15 @@
 package tests.selenide;
 
-import com.codeborne.selenide.Selenide;
-import com.codeborne.selenide.WebDriverRunner;
+import com.codeborne.selenide.*;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.bidi.network.Cookie;
 
+import java.io.File;
 import java.time.Duration;
 
+import static com.codeborne.selenide.CollectionCondition.*;
 import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Condition.empty;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
 
@@ -38,7 +40,7 @@ public class Snippets {
 
         Selenide.switchTo().window("main"); // перемещение между окнами
 
-        var cookie=new Cookie("foo","11234");
+        var cookie = new Cookie("foo","11234");
         WebDriverRunner.getWebDriver().manage().addCookie(cookie);
         // способ добавления значений cookie, Selenide еше не реализовал эту команду
     }
@@ -202,4 +204,63 @@ public class Snippets {
         $("").shouldBe(enabled);
 
     }
+
+    void collections_examples() {
+
+        $$("div");
+
+        $$x("//div");
+
+        $$("div").filterBy(text("123")).shouldHave(size(1)); // фильтр, у которых есть значение
+        $$("div").excludeWith(text("123")).shouldHave(size(1)); // фильтр, у которых НЕТ данных значение
+
+        $$("div").first().click(); // переход к первому элементу
+        elements("div").first().click(); // аналог
+        // $("div").click(); - делает тоже самое, но выше описывает что именно делаем для читателя кода
+
+        $$("div").last().click(); // переход к последнему элементу
+        $$("div").get(1).click(); // второй элемент (начало с 0)
+        $("div",1).click(); // аналог
+        $$("div").findBy(text("123")).click(); // фильтрует и берет первый элемент
+
+        // проверки (assertions)
+        $$("").shouldHave(size(0)); // коллекция должна быть пустой (0 элементов)
+        $$("").shouldBe(CollectionCondition.empty); // аналог, коллекция пустая (более читаемая форма)
+
+        $$("").shouldHave(texts("Alfa", "Beta", "Gamma"));
+        // элементы содержат тексты "Alfa", "Beta", "Gamma" (порядок важен, частичное совпадение), не больше и не меньше 3-х элементов
+        $$("").shouldHave(exactTexts(("Alfa", "Beta", "Gamma"));
+        // элементы строго равны текстам (порядок важен, без лишних символов)
+
+        $$("").shouldHave(textsInAnyOrder("Alfa", "Beta", "Gamma"));
+        // тексты присутствуют, но порядок не важен (частичное совпадение)
+        $$("").shouldHave(exactTextsCaseSensitiveInAnyOrder(("Alfa", "Beta", "Gamma"));
+        // точное совпадение текстов + регистр важен + порядок не важен
+
+        $$("").shouldHave(itemWithText("Gamma")); // в коллекции есть хотя бы один элемент с текстом "Gamma"
+
+        $$("").shouldHave(sizeGreaterThan(0)); // количество элементов больше 0 (коллекция не пустая)
+        $$("").shouldHave(sizeGreaterThanOrEqual(1)); // количество элементов больше или равно 1
+        $$("").shouldHave(sizeLessThan(3)); // количество элементов меньше 3
+        $$("").shouldHave(sizeLessThanOrEqual(2)); // количество элементов меньше или равно 2
+    }
+
+    void file_operation_examples() fhrows FileNotFoundException {
+
+        File file1 = $("a.fileLink").download(); // только для <a href="..">
+        File file2 = $("div").download(DownloadOptions.using(FileDownloadMode.FOLDER));
+
+        File file = new File("src/test/resources/readme.txt");
+        $("#file-upload").uploadFile(file);
+        $("#file-upload").uploadFromClasspath("readme.txt");
+        $("uploadButton").click();
+    }
+
+    void javascript_examples() {
+        executeJavaScript("alert('selenide')");
+        executeJavaScript("alert(arguments[0]+arguments[1])", "abc", 12);
+        long fortytwo = executeJavaScript("return arguments[0]+arguments[1];", 6, 7);
+
+    }
+
 }
