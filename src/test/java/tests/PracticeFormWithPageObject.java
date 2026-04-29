@@ -4,11 +4,6 @@ package tests;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
 
-import static com.codeborne.selenide.Condition.appear;
-import static com.codeborne.selenide.Condition.text;
-
-import static com.codeborne.selenide.Selenide.$;
-
 
 public class PracticeFormWithPageObject extends TestBase {
 
@@ -35,9 +30,6 @@ public class PracticeFormWithPageObject extends TestBase {
                 .verifySuccessModal("Thanks for submitting the form")
                 .checkResult("Student Name",TestData.FULL_NAME)
                 .checkResult("Student Email",TestData.EMAIL);
-
-
-
-
     }
+
 }
