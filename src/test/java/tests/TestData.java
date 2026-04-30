@@ -1,14 +1,21 @@
 package tests;
 
+import com.github.javafaker.Faker;
+
 import java.io.File;
+import java.util.Locale;
 
 public class TestData {
-    public static final String FIRST_NAME = "MAX",
-            SECOND_NAME = "DEDYURA",
+
+    static Faker faker = new Faker();
+
+    public static final String
+            FIRST_NAME = faker.name().firstName(),
+            SECOND_NAME = faker.name().lastName(),
             FULL_NAME = FIRST_NAME + " " + SECOND_NAME,
-            EMAIL = "m.dedyura@icloud.com",
-            MOBILE_NUMBER = "1234567890",
-            CURRENT_ADDRESS = "253 Tole Bi St., Almaty, Kazakhstan",
+            EMAIL = faker.internet().emailAddress(),
+            MOBILE_NUMBER = faker.numerify("##########"),
+            CURRENT_ADDRESS = faker.address().fullAddress(),
             PERMANENT_ADDRESS = CURRENT_ADDRESS;
 
     public static final File PICTURE_FILE = new File("src/test/resources/picture.jpeg");
