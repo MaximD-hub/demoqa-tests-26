@@ -4,6 +4,8 @@ package tests;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
 
+import static tests.TestData.*;
+
 
 public class PracticeFormWithPageObject extends TestBase {
 
@@ -15,21 +17,21 @@ public class PracticeFormWithPageObject extends TestBase {
     public void automationPracticeForm() {
         registrationPage.openPage();
 
-        registrationPage.setFirstName(TestData.FIRST_NAME)
-                .setLastName(TestData.SECOND_NAME)
-                .setEmail(TestData.EMAIL)
+        registrationPage.setFirstName(FIRST_NAME)
+                .setLastName(SECOND_NAME)
+                .setEmail(EMAIL)
                 .setGender("Male")
-                .setUserNumber(TestData.MOBILE_NUMBER)
+                .setUserNumber(MOBILE_NUMBER)
                 .setDateOfBirth("30","October","2026")
                 .setSubject("M", "Maths")
                 .setHobbies()
-                .setPicture(TestData.PICTURE_FILE)
-                .setCurrentAddress(TestData.CURRENT_ADDRESS)
+                .setPicture(PICTURE_FILE)
+                .setCurrentAddress(CURRENT_ADDRESS)
                 .setStateCity()
                 .clickSubmit()
                 .verifySuccessModal("Thanks for submitting the form")
-                .checkResult("Student Name",TestData.FULL_NAME)
-                .checkResult("Student Email",TestData.EMAIL);
+                .checkResult("Student Name",FULL_NAME)
+                .checkResult("Student Email",EMAIL);
     }
 
 }
